@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
  * Created by durmm on 16/01/18.
  */
 public class TestWebdriver {
-    WebDriver driver;
-    String os = "linux";
+    private WebDriver driver;
+    private String os = "linux";
 
     private WebDriver getLinuxDriver(char browser) {
         switch (browser) {
@@ -28,8 +28,8 @@ public class TestWebdriver {
                 options.setBinary("/usr/bin/opera");
                 return driver = new OperaDriver(options);
             default:
-                System.setProperty("webdriver.gecko.driver", "/var/www/webdrivers-test/linux drivers/geckodriver64linux");
-                return driver = new FirefoxDriver();
+                System.out.println("currently available: F for Firefox, C for Chrome, O for Opera.");
+                return null;
         }
     }
 
@@ -53,15 +53,15 @@ public class TestWebdriver {
                 System.setProperty("webdriver.ie.driver", "/var/www/webdrivers-test/windows drivers/iedriver.exe");
                 return driver = new InternetExplorerDriver();
             default:
-                System.setProperty("webdriver.gecko.driver", "/var/www/webdrivers-test/windows drivers/geckodriver64.exe");
-                return driver = new FirefoxDriver();
+                System.out.println("currently available: F for Firefox, C for Chrome, O for Opera, E for Edge, I for Internet Explorer.");
+                return null;
         }
     }
 
     @Test
     public void test() {
         if (os == "linux") {
-            WebDriver driver = getLinuxDriver('O');
+            WebDriver driver = getLinuxDriver('F');
         } if (os == "windows") {
             WebDriver driver = getWindowsDriver('F');
         }
