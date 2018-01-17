@@ -1,14 +1,15 @@
-import net.bytebuddy.asm.Advice;
+import org.apache.xpath.SourceTree;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
-import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Test;
 
 import static org.openqa.selenium.Keys.ENTER;
@@ -18,7 +19,7 @@ import static org.openqa.selenium.Keys.ENTER;
  */
 public class TestWebdriver {
     private WebDriver driver;
-    private String os = "windows";
+    private String os = "linux";
 
     private WebDriver getLinuxDriver(char browser) {
         switch (browser) {
@@ -34,8 +35,8 @@ public class TestWebdriver {
                 options.setBinary("/usr/bin/opera");
                 return driver = new OperaDriver(options);
             default:
-                System.out.println("currently available: F for Firefox, C for Chrome, O for Opera.");
-                return null;
+                System.out.println("available browsers: 'F' for Firefox, 'C' for Chrome, 'O' for Opera.");
+                return driver = new HtmlUnitDriver();
         }
     }
 
@@ -59,17 +60,23 @@ public class TestWebdriver {
                 System.setProperty("webdriver.ie.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\windows drivers\\iedriver.exe");
                 return driver = new InternetExplorerDriver();
             default:
-                System.out.println("currently available: F for Firefox, C for Chrome, O for Opera, E for Edge, I for Internet Explorer.");
-                return null;
+                System.out.println("available browsers: 'F' for Firefox, 'C' for Chrome, 'O' for Opera, 'E' for Edge, 'I' for Internet Explorer.");
+                return driver = new HtmlUnitDriver();
         }
+    }
+
+    private WebDriver getMacDriver() {
+        return driver = new SafariDriver();
     }
 
     @Test
     public void test() throws InterruptedException {
         if (os == "linux") {
-            WebDriver driver = getLinuxDriver('F');
+            driver = getLinuxDriver('C');
         } if (os == "windows") {
-            WebDriver driver = getWindowsDriver('O');
+            driver = getWindowsDriver('O');
+        } if (os == "mac") {
+            driver = getMacDriver();
         }
         driver.get("https://google.am");
         WebElement element = driver.findElement(By.id("lst-ib"));
@@ -78,5 +85,10 @@ public class TestWebdriver {
         Thread.sleep(5000);
         driver.close();
 //        driver.quit();
+    }
+
+    @Test
+    public void systemPropertiesTest() {
+        System.out.println(System.getProperty("user.home"));
     }
 }
