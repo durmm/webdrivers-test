@@ -14,9 +14,6 @@ import org.testng.annotations.Test;
 
 import static org.openqa.selenium.Keys.ENTER;
 
-/**
- * Created by durmm on 16/01/18.
- */
 public class TestWebdriver {
     private WebDriver driver;
     private String os = "linux";
@@ -72,10 +69,10 @@ public class TestWebdriver {
     @Test
     public void test() throws InterruptedException {
         if (os == "linux") {
-            driver = getLinuxDriver('C');
-        } if (os == "windows") {
+            driver = getLinuxDriver('a');
+        } else if (os == "windows") {
             driver = getWindowsDriver('O');
-        } if (os == "mac") {
+        } else if (os == "mac") {
             driver = getMacDriver();
         }
         driver.get("https://google.am");
@@ -85,10 +82,5 @@ public class TestWebdriver {
         Thread.sleep(5000);
         driver.close();
 //        driver.quit();
-    }
-
-    @Test
-    public void systemPropertiesTest() {
-        System.out.println(System.getProperty("user.home"));
     }
 }
