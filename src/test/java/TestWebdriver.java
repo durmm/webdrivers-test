@@ -15,18 +15,18 @@ import static org.openqa.selenium.Keys.ENTER;
 
 public class TestWebdriver {
     private WebDriver driver;
-    private String os = "windows";
+    private String os = "linux";
 
     private WebDriver getLinuxDriver(char browser) {
         switch (browser) {
             case 'F':
-                System.setProperty("webdriver.gecko.driver", "/var/www/webdrivers-test/linux-drivers/geckodriver64linux");
+                System.setProperty("webdriver.gecko.driver", "/var/www/webdrivers-test/linux-drivers/geckodriver-v0.19.1-linux64");
                 return driver = new FirefoxDriver();
             case 'C':
-                System.setProperty("webdriver.chrome.driver", "/var/www/webdrivers-test/linux-drivers/chromedriver64linux");
+                System.setProperty("webdriver.chrome.driver", "/var/www/webdrivers-test/linux-drivers/chromedriver-v2.35-linux64");
                 return driver = new ChromeDriver();
             case 'O':
-                System.setProperty("webdriver.opera.driver", "/var/www/webdrivers-test/linux-drivers/operadriver64linux");
+                System.setProperty("webdriver.opera.driver", "/var/www/webdrivers-test/linux-drivers/operadriver-v2.33-linux64");
                 OperaOptions options = new OperaOptions();
                 options.setBinary("/usr/bin/opera");
                 return driver = new OperaDriver(options);
@@ -68,7 +68,7 @@ public class TestWebdriver {
     @Test
     public void test() throws InterruptedException {
         if (os.equals("linux")) {
-            driver = getLinuxDriver('a');
+            driver = getLinuxDriver('O');
         } else if (os.equals("windows")) {
             driver = getWindowsDriver('F');
         } else if (os.equals("mac")) {
