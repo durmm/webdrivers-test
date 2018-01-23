@@ -1,9 +1,8 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
@@ -21,15 +20,17 @@ public class TestWebdriver {
         switch (browser) {
             case 'F':
                 System.setProperty("webdriver.gecko.driver", "/var/www/webdrivers-test/linux-drivers/geckodriver-v0.19.1-linux64");
-                return driver = new FirefoxDriver();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setCapability("PageLoadStrategy", "eager");
+                return driver = new FirefoxDriver(firefoxOptions);
             case 'C':
                 System.setProperty("webdriver.chrome.driver", "/var/www/webdrivers-test/linux-drivers/chromedriver-v2.35-linux64");
                 return driver = new ChromeDriver();
             case 'O':
                 System.setProperty("webdriver.opera.driver", "/var/www/webdrivers-test/linux-drivers/operadriver-v2.33-linux64");
-                OperaOptions options = new OperaOptions();
-                options.setBinary("/usr/bin/opera");
-                return driver = new OperaDriver(options);
+                OperaOptions operaOptions = new OperaOptions();
+                operaOptions.setBinary("/usr/bin/opera");
+                return driver = new OperaDriver(operaOptions);
             default:
                 System.out.println("available browsers: 'F' for Firefox, 'C' for Chrome, 'O' for Opera.");
                 return driver = new HtmlUnitDriver();
@@ -40,15 +41,17 @@ public class TestWebdriver {
         switch (browser) {
             case 'F':
                 System.setProperty("webdriver.gecko.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\windows-drivers\\geckodriver-v0.19.1-win64.exe");
-                return driver = new FirefoxDriver();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setCapability("PageLoadStrategy", "normal");
+                return driver = new FirefoxDriver(firefoxOptions);
             case 'C':
                 System.setProperty("webdriver.chrome.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\windows-drivers\\chromedriver-v2.35-win32.exe");
                 return driver = new ChromeDriver();
             case 'O':
                 System.setProperty("webdriver.opera.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\windows-drivers\\operadriver-v2.33-win64.exe");
-                OperaOptions options = new OperaOptions();
-                options.setBinary("C:\\Program Files (x86)\\Opera\\launcher.exe");
-                return driver = new OperaDriver(options);
+                OperaOptions operaOptions = new OperaOptions();
+                operaOptions.setBinary("C:\\Program Files (x86)\\Opera\\launcher.exe");
+                return driver = new OperaDriver(operaOptions);
             case 'E':
                 System.setProperty("webdriver.edge.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\windows-drivers\\edgedriver-v16299.exe");
                 return driver = new EdgeDriver();
@@ -68,18 +71,17 @@ public class TestWebdriver {
     @Test
     public void test() throws InterruptedException {
         if (os.equals("linux")) {
-            driver = getLinuxDriver('O');
+            driver = getLinuxDriver('F');
         } else if (os.equals("windows")) {
             driver = getWindowsDriver('F');
         } else if (os.equals("mac")) {
             driver = getMacDriver();
         }
         driver.get("https://google.am");
-        Thread.sleep(5000);
         WebElement element = driver.findElement(By.id("lst-ib"));
+//        WebElement element = driver.findElement(By.xpath("//input[@class='lst-ib']"));
         element.sendKeys("english setter");
         element.sendKeys(ENTER);
-        Thread.sleep(5000);
         driver.close();
 //        driver.quit();
     }
