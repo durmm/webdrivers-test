@@ -8,6 +8,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.openqa.selenium.Keys.ENTER;
@@ -68,8 +69,8 @@ public class TestWebdriver {
         return driver = new SafariDriver();
     }
 
-    @Test
-    public void test() throws InterruptedException {
+    @BeforeMethod
+    public void beforeTest() {
         if (os.equals("linux")) {
             driver = getLinuxDriver('F');
         } else if (os.equals("windows")) {
@@ -77,6 +78,11 @@ public class TestWebdriver {
         } else if (os.equals("mac")) {
             driver = getMacDriver();
         }
+    }
+
+    @Test
+    public void test1() {
+
         driver.get("https://google.am");
         WebElement element = driver.findElement(By.id("lst-ib"));
 //        WebElement element = driver.findElement(By.xpath("//input[@class='lst-ib']"));
@@ -84,5 +90,14 @@ public class TestWebdriver {
         element.sendKeys(ENTER);
         driver.close();
 //        driver.quit();
+    }
+
+    @Test
+    public void test2() {
+        driver.get("https://mailinator.com");
+        WebElement inboxInput = driver.findElement(By.id("inboxfield"));
+        inboxInput.sendKeys("durmm");
+        inboxInput.sendKeys(ENTER);
+        driver.close();
     }
 }
