@@ -20,18 +20,20 @@ public class TestWebdriver {
     private WebDriver getLinuxDriver(char browser) {
         switch (browser) {
             case 'F':
-                System.setProperty("webdriver.gecko.driver", "/var/www/webdrivers-test/drivers/linux-drivers/geckodriver-v0.19.1-linux64");
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setCapability("PageLoadStrategy", "eager");
-                return driver = new FirefoxDriver(firefoxOptions);
+                System.setProperty("webdriver.gecko.driver", "/var/www/webdrivers-test/drivers/linux-drivers/geckodriver-v0.21.0-linux64");
+//                FirefoxOptions firefoxOptions = new FirefoxOptions();
+//                firefoxOptions.setCapability("PageLoadStrategy", "eager");
+//                return driver = new FirefoxDriver(firefoxOptions);
+                return driver = new FirefoxDriver();
             case 'C':
-                System.setProperty("webdriver.chrome.driver", "/var/www/webdrivers-test/drivers/linux-drivers/chromedriver-v2.35-linux64");
+                System.setProperty("webdriver.chrome.driver", "/var/www/webdrivers-test/drivers/linux-drivers/chromedriver-v2.40-linux64");
                 return driver = new ChromeDriver();
             case 'O':
-                System.setProperty("webdriver.opera.driver", "/var/www/webdrivers-test/drivers/linux-drivers/operadriver-v2.33-linux64");
-                OperaOptions operaOptions = new OperaOptions();
-                operaOptions.setBinary("/usr/bin/opera");
-                return driver = new OperaDriver(operaOptions);
+                System.setProperty("webdriver.opera.driver", "/var/www/webdrivers-test/drivers/linux-drivers/operadriver-v2.36-linux64");
+//                OperaOptions operaOptions = new OperaOptions();
+//                operaOptions.setBinary("/usr/bin/opera");
+//                return driver = new OperaDriver(operaOptions);
+                return driver = new OperaDriver();
             default:
                 System.out.println("available browsers: 'F' for Firefox, 'C' for Chrome, 'O' for Opera.");
                 return driver = new HtmlUnitDriver();
@@ -41,23 +43,25 @@ public class TestWebdriver {
     private WebDriver getWindowsDriver(char browser) {
         switch (browser) {
             case 'F':
-                System.setProperty("webdriver.gecko.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\geckodriver-v0.19.1-win64.exe");
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setCapability("PageLoadStrategy", "normal");
-                return driver = new FirefoxDriver(firefoxOptions);
+                System.setProperty("webdriver.gecko.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\geckodriver-v0.21.0-win64.exe");
+//                FirefoxOptions firefoxOptions = new FirefoxOptions();
+//                firefoxOptions.setCapability("PageLoadStrategy", "normal");
+//                return driver = new FirefoxDriver(firefoxOptions);
+                return driver = new FirefoxDriver();
             case 'C':
-                System.setProperty("webdriver.chrome.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\chromedriver-v2.35-win32.exe");
+                System.setProperty("webdriver.chrome.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\chromedriver-v2.40-win32.exe");
                 return driver = new ChromeDriver();
             case 'O':
-                System.setProperty("webdriver.opera.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\operadriver-v2.33-win64.exe");
-                OperaOptions operaOptions = new OperaOptions();
-                operaOptions.setBinary("C:\\Program Files (x86)\\Opera\\launcher.exe");
-                return driver = new OperaDriver(operaOptions);
+                System.setProperty("webdriver.opera.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\operadriver-v2.36-win64.exe");
+//                OperaOptions operaOptions = new OperaOptions();
+//                operaOptions.setBinary("C:\\Program Files (x86)\\Opera\\launcher.exe");
+//                return driver = new OperaDriver(operaOptions);
+                return driver = new OperaDriver();
             case 'E':
-                System.setProperty("webdriver.edge.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\edgedriver-v16299.exe");
+                System.setProperty("webdriver.edge.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\edgedriver-v17134.exe");
                 return driver = new EdgeDriver();
             case 'I':
-                System.setProperty("webdriver.ie.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\iedriver-v3.8.0-win64.exe");
+                System.setProperty("webdriver.ie.driver", "C:\\Users\\Narine\\Documents\\Test Studio Projects\\webdrivers-test\\drivers\\windows-drivers\\iedriver-v3.9.0-win64.exe");
                 return driver = new InternetExplorerDriver();
             default:
                 System.out.println("available browsers: 'F' for Firefox, 'C' for Chrome, 'O' for Opera, 'E' for Edge, 'I' for Internet Explorer.");
