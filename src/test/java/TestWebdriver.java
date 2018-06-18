@@ -15,7 +15,7 @@ import static org.openqa.selenium.Keys.ENTER;
 
 public class TestWebdriver {
     private WebDriver driver;
-    private String os = "linux";
+    private String os = "windows";
 
     private WebDriver getLinuxDriver(char browser) {
         switch (browser) {
