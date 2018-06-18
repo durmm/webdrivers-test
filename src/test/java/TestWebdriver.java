@@ -76,9 +76,9 @@ public class TestWebdriver {
     @BeforeMethod
     public void beforeTest() {
         if (os.equals("linux")) {
-            driver = getLinuxDriver('F');
+            driver = getLinuxDriver('C');
         } else if (os.equals("windows")) {
-            driver = getWindowsDriver('F');
+            driver = getWindowsDriver('C');
         } else if (os.equals("mac")) {
             driver = getMacDriver();
         }
